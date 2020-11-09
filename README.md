@@ -117,7 +117,8 @@ set vs test.
 require("standardize")
 set.seed(654321)
 NN <- length(dat_for_analysis_sub$NOTCOV)
-restrict_1 <- as.logical(round(runif(NN,min=0,max=0.6))) # use fraction as training data
+# restrict_1 <- as.logical(round(runif(NN,min=0,max=0.6))) # use fraction as training data
+restrict_1 <- (runif(NN) < 0.1) # use 10% as training data
 summary(restrict_1)
 dat_train <- subset(dat_for_analysis_sub, restrict_1)
 dat_test <- subset(dat_for_analysis_sub, !restrict_1)
