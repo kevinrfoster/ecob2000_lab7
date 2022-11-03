@@ -136,7 +136,7 @@ names(dat_for_analysis_sub)
 names(dat_for_analysis_sub) <- sub("dat_ATUS.","",names(dat_for_analysis_sub))
 names(dat_for_analysis_sub)[1] <- "any_time_sports"
 names(dat_for_analysis_sub)[2] <- "AGE"
-names(dat_for_analysis_sub)[47] <- "SEX"
+names(dat_for_analysis_sub)[37] <- "SEX"
 names(dat_for_analysis_sub)
 ```
 
@@ -154,16 +154,17 @@ test.
 ``` r
 require("standardize")
 set.seed(654321)
-NN <- length(dat_for_analysis_sub$vaxx)
+NN <- length(dat_for_analysis_sub$any_time_sports)
 restrict_1 <- (runif(NN) < 0.1) # use 10% as training data
 summary(restrict_1)
 dat_train <- subset(dat_for_analysis_sub, restrict_1)
 dat_test <- subset(dat_for_analysis_sub, !restrict_1)
 
-sobj <- standardize(vaxx ~ TBIRTH_YEAR + EEDUCsome.hs + EEDUCHS.diploma + EEDUCsome.coll + EEDUCassoc.deg + EEDUCbach.deg + EEDUCadv.deg + 
-                      MSmarried + MSwidowed + MSdivorced + MSseparated + MSnever + RRACEBlack + RRACEAsian + RRACEOther +
-                      hispanic + GENID_DESCRIBEmale + GENID_DESCRIBEfemale + GENID_DESCRIBEtransgender + GENID_DESCRIBEother +
-                      REGIONSouth + REGIONMidwest + REGIONWest
+sobj <- standardize(any_time_sports ~ AGE + EDUC_rHS + EDUC_rsome_college + EDUC_rassociate + EDUC_rbachelor + EDUC_rmaster + EDUC_rprof_or_PhD + 
+                    MARST.Married...spouse.absent.+ MARST.Widowed. + MARST.Divorced. + MARST.Separated. + MARST.Never.married. +
+                    RACE.Black.only. + RACE.American.Indian..Alaskan.Native. + RACE.Asian.only. +
+                    HISPAN.Mexican. + HISPAN.Puerto.Rican. + HISPAN.Cuban. + HISPAN.Other.Spanish. +
+                    SEX + REGION.Midwest. + REGION.South. + REGION.West.
                       , dat_train, family = binomial)
 
 s_dat_test <- predict(sobj, dat_test)
@@ -178,37 +179,16 @@ model_lpm1 <- lm(sobj$formula, data = sobj$data)
 summary(model_lpm1)
 pred_vals_lpm <- predict(model_lpm1, s_dat_test)
 pred_model_lpm1 <- (pred_vals_lpm > mean(pred_vals_lpm))
-table(pred = pred_model_lpm1, true = dat_test$vaxx)
+table(pred = pred_model_lpm1, true = dat_test$any_time_sports)
 # logit 
 model_logit1 <- glm(sobj$formula, family = binomial, data = sobj$data)
 summary(model_logit1)
 pred_vals <- predict(model_logit1, s_dat_test, type = "response")
 pred_model_logit1 <- (pred_vals > 0.5)
-table(pred = pred_model_logit1, true = dat_test$vaxx)
+table(pred = pred_model_logit1, true = dat_test$any_time_sports)
 ```
 
 You can play around to see if the “predvals \> 0.5” cutoff is best.
 These give a table about how the models predict.
 
 *Note this might throw some red messages but it still works*
-
-### Note on NA
-
-Here I’ve chosen to set NA responses to *are you vaxxed?* to be missing
-so R drops them. However other NA responses such Marital Status or
-Gender ID are not omitted but rather set as additional levels in those
-factors. Partly that’s to keep the Y-variable binary just yes or no,
-whereas the X-variables can have additional levels. I’m interpreting NA
-responses to many of these questions as, *it’s complicated*. There are
-other cases where NA responses have different interpretations, for
-example a question about how Covid impacted childcare would get NA
-answer if the person doesn’t have kids needing that care.
-
-You can try different ways of dealing with this: it might be plausible
-to count NA answers to vaxx question as ‘no’. Put that into the
-estimation and see if there are changes. Or check some of the other NA
-answers to see if there are some people who give complicated answers to
-many questions or whether these are scattered.
-
-This is an area of ‘researcher degrees of freedom’ where plausible
-choices might impact the conclusions of the analysis.
