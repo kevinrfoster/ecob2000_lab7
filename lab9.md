@@ -5,7 +5,7 @@ Lab 9
 
 ### Kevin R Foster, the Colin Powell School at the City College of New York, CUNY
 
-### Fall 2024
+### Fall 2025
 
 In the last 3 weeks we estimated OLS and logit models, created a
 standardized dataset and split it into training and test sets. Now I
