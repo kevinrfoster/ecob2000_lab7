@@ -5,7 +5,7 @@ Homework 8
 
 ### Kevin R Foster, the Colin Powell School at the City College of New York, CUNY
 
-### Due 8am Nov 8, 2024
+### Due 8am Nov 14, 2025
 
 *Each student should submit a separate assignment, even if it is an
 identical computer file to the rest of your study group. When submitting
