@@ -5,7 +5,7 @@ Lab 7
 
 ### Kevin R Foster, the Colin Powell School at the City College of New York, CUNY
 
-### Fall 2024
+### Fall 2025
 
 We will start the first of a 3-part sequence.
 
