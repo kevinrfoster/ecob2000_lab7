@@ -14,7 +14,7 @@ of the filename. Please write the names of your study group members at
 the beginning of your homework.*
 
 1.  What are the names of the people in your study group?
-2.  Write up the results of your work in Lab 7. Explain each step and
+2.  Write up the results of your work in Lab 8. Explain each step and
     your choices. Don’t just upload a mass of output, make it clear and
     understandable about what’s going on in the data. Explain some
     hypothesis tests. Impress me.
