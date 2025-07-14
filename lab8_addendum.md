@@ -5,7 +5,7 @@ Lab 8 addendum
 
 ### Kevin R Foster, the Colin Powell School at the City College of New York, CUNY
 
-### Fall 2024
+### Fall 2025
 
 This is some coding background – not as much to ponder, just preparing
 for Lab 9.
