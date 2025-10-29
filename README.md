@@ -70,8 +70,8 @@ I’ll look at what factors relate to a partner being older and I’ll
 choose to consider traditional pairs, where a man and woman are married
 and he is placed as householder (in the olden days, would be called
 ‘head of household’). I’ll create a dummy variable for if the man is
-more than 5 years older than the woman. You can pick a different number
-than 5!
+more than 5 years older than the woman. You ~~can~~ should pick a
+different number than 5!
 
 ``` r
 trad_data <- acs2021_couples %>% filter( (SEX == "Female") & (h_sex == "Male") )
