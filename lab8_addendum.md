@@ -11,8 +11,8 @@ This is some coding background – not as much to ponder, just preparing
 for Lab 9.
 
 We do some more complicated coding now, in order to make later coding
-less complicated. It’s an investment. (so profitability depends on your
-personal discount rate)
+less complicated. It’s an investment (so profitability depends on your
+personal discount rate).
 
 We want just 2 simple things: to standardize our data (all X-variables
 to have values just in \[0,1\] interval) and to split the data into a
